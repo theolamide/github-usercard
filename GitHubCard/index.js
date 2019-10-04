@@ -2,14 +2,6 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
-axios.get('https://api.github.com/users/theolamide')
-.then(response =>{
-  console.log(response);
-  console.log(createCard(response.data));
-  const attachToCards = document.querySelector('.cards');
-  const newCard = createCard(response.data);
-  attachToCards.appendChild(newCard);
-}) ;
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -32,17 +24,7 @@ axios.get('https://api.github.com/users/theolamide')
           user, and adding that card to the DOM.
 */
 
-const followersArray = ['viewgo','j0liver', 'sjeremich23','adamwinzdesign','Greyflanel','Olutundun','tetondan','dustinmyers','justsml','luishrd','bigknell'];
 
-
-followersArray.forEach(item =>{
-  axios.get(`https://api.github.com/users/${item}`)
-.then(response =>{
-  const attachToCards = document.querySelector('.cards');
-  const newCard = createCard(response.data);
-  attachToCards.appendChild(newCard);
-}) ;
-})
 /* Step 3: Create a function that accepts a single object as its only argument,
           Using DOM methods and properties, create a component that will return the following DOM element:
 
@@ -64,6 +46,30 @@ followersArray.forEach(item =>{
 
 */
 
+//API access
+axios.get('https://api.github.com/users/theolamide')
+.then(response =>{
+  console.log(response);
+  console.log(createCard(response.data));
+  const attachToCards = document.querySelector('.cards');
+  const newCard = createCard(response.data);
+  attachToCards.appendChild(newCard);
+}) ;
+
+
+//Frinds Array
+const followersArray = ['viewgo','j0liver', 'sjeremich23','adamwinzdesign','Greyflanel','Olutundun','tetondan','dustinmyers','justsml','luishrd','bigknell'];
+followersArray.forEach(item =>{
+  axios.get(`https://api.github.com/users/${item}`)
+.then(response =>{
+  const attachToCards = document.querySelector('.cards');
+  const newCard = createCard(response.data);
+  attachToCards.appendChild(newCard);
+}) 
+})
+
+
+//Element Structure function
 function createCard(data){
  //Create the Elements
  
